@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+/* =========================================
+   Taste-skill deal tokens (gaming · lunar-grey-bronze · mona)
+   ========================================= */
+
+@theme {
+  /* Grounds */
+  --color-bg: #111111;
+  --color-surface: #1c1c1c;
+  --color-surface-2: #262626;
+  --color-ink: #f2f2f2;
+  --color-muted: #8f8f8f;
+  --color-accent: #a08672;
+  --color-accent-ink: #111111;
+
+  /* Inverse (light on dark page) */
+  --color-inv-bg: #f2f2f2;
+  --color-inv-ink: #111111;
+
+  /* Radius (soft) */
+  --radius-btn: 10px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  /* Fonts */
+  --font-display: "Mona Sans", system-ui, sans-serif;
+  --font-text: "Mona Sans", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}
+
+:root {
+  /* Spacing scale (taste-skill system.md) */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
+  --s-9: 96px; --s-10: 128px;
+
+  /* Rhythm tokens */
+  --nav: 72px;
+  --padt: 120px;
+  --padb: 72px;
+  --gut: 80px;
+  --hgap: 48px;
+  --hpadb: 64px;
+
+  /* Type tokens */
+  --display-weight: 500;
+  --display-tracking: -0.03em;
+  --display-tracking-xl: -0.04em;
+  --display-stretch: 104%;
+
+  color-scheme: dark;
+}
+
+html, body, #root {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-text);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 12-column grid (taste-skill layout-v4.md) */
+.ts-wrap {
+  width: min(100% - 2 * var(--gut), 1280px);
+  margin-inline: auto;
+}
+
+.ts-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+/* Hero entrance (motion.md) */
+html.m-enter .ts-hero-text > * {
+  opacity: 0;
+  transform: translateY(12px);
+}
+html.m-enter-done .ts-hero-text > * {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 600ms cubic-bezier(.22,1,.36,1),
+              transform 600ms cubic-bezier(.22,1,.36,1);
+}
+html.m-enter-done .ts-hero-text > *:nth-child(1) { transition-delay: 0ms; }
+html.m-enter-done .ts-hero-text > *:nth-child(2) { transition-delay: 80ms; }
+html.m-enter-done .ts-hero-text > *:nth-child(3) { transition-delay: 160ms; }
+html.m-enter-done .ts-hero-text > *:nth-child(4) { transition-delay: 240ms; }
+html.m-enter-done .ts-hero-text > *:nth-child(5) { transition-delay: 320ms; }
+
+/* Hover layer (motion.md) */
+.ts-link {
+  position: relative;
+  transition: color 150ms ease-out;
+}
+.ts-link::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -3px;
+  height: 1px;
+  width: 0;
+  background: currentColor;
+  transition: width 150ms ease-out;
+}
+.ts-link:hover::after { width: 100%; }
+
+.ts-card {
+  transition: transform 180ms ease-out,
+              border-color 150ms ease-out,
+              box-shadow 150ms ease-out;
+}
+.ts-card-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -8px rgba(160,134,114,0.2);
+}
+
+/* Button hover: step up 1px, press sink 1px + scale .985 */
+.ts-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border-radius: var(--radius-btn);
+  height: 44px;
+  padding: 0 24px;
+  transition: transform 150ms ease-out,
+              background-color 150ms ease-out,
+              color 150ms ease-out,
+              border-color 150ms ease-out,
+              box-shadow 150ms ease-out;
+  cursor: pointer;
+  font-size: 16px;
+  letter-spacing: 0;
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+.ts-btn-primary {
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
+}
+.ts-btn-primary:hover { transform: translateY(-1px); }
+.ts-btn-primary:active { transform: translateY(1px) scale(0.985); }
+
+.ts-btn-secondary {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-muted);
+}
+.ts-btn-secondary:hover {
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.04);
+  border-color: var(--color-ink);
+}
+.ts-btn-secondary:active { transform: translateY(1px) scale(0.985); }
+
+/* Word-highlight moment (moments.md) */
+.ts-word-highlight.is-active .wh-word {
+  color: var(--color-ink);
+}
+.wh-word {
+  color: var(--color-muted);
+  transition: color 200ms ease-out;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html.m-enter .ts-hero-text > *,
+  html.m-enter-done .ts-hero-text > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .ts-btn, .ts-btn:hover, .ts-btn:active,
+  .ts-card, .ts-card-link:hover,
+  .ts-link::after {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Mobile (< 640px) */
+@media (max-width: 639px) {
+  :root {
+    --padt: 96px;
+    --padb: 48px;
+    --gut: 24px;
+    --hgap: 40px;
+    --nav: 56px;
+  }
+  .ts-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

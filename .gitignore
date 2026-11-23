@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+dist-ssr/
+*.local
+
+# agent / tool artifacts
+.trae-html-share-packages/
+.taste-skill/
+.trae/
+
+# editor & os
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+*.suo
+*.sw?
+
+# env & secrets
+.env
+.env.*
+!.env.example
