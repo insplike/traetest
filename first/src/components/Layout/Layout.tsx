@@ -1,10 +1,13 @@
 import { Link, NavLink } from 'react-router-dom'
+import { useAnchorScroll } from '../../hooks/useAnchorScroll'
 
 interface LayoutProps {
   children: React.ReactNode
 }
 
 function Layout({ children }: LayoutProps) {
+  useAnchorScroll()
+
   return (
     <div className="min-h-screen bg-bg text-ink">
       {/* nav-centre: fixed opaque bar */}

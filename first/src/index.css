@@ -64,6 +64,11 @@ html, body, #root {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Anchor target clears the fixed header */
+main#top {
+  scroll-margin-top: var(--nav);
+}
+
 /* 12-column grid (taste-skill layout-v4.md) */
 .ts-wrap {
   width: min(100% - 2 * var(--gut), 1280px);
